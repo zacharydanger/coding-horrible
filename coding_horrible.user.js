@@ -27,7 +27,7 @@ GM_wait();
 // All your GM code must be inside this function
 function letsJQuery() {
 	//override Jeff's random bold fetish
-	$("*").css('font-weight', 'normal');
+	$("b, strong").css('font-weight', 'normal');
 
 	//replace all links to coding horror archives with links to random xkcd comics. :]
 	$("a:regex(href, *codinghorror.com/blog/archives/*)").each(function() {
