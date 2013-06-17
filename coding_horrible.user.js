@@ -23,16 +23,21 @@ function GM_wait() {
 	}
 }
 GM_wait();
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+}
+function pad(n){return n<10 ? '0'+n : n}
 
 // All your GM code must be inside this function
 function letsJQuery() {
 	//override Jeff's random bold fetish
 	$("b, strong").css('font-weight', 'normal');
 
-	//replace all links to coding horror archives with links to random xkcd comics. :]
+	//replace all links to coding horror archives with links to random dilbert comic from today all the way back to the first one in 1989.
 	$("a:regex(href, *codinghorror.com/blog/archives/*)").each(function() {
-		var new_url = 'http://xkcd.com/';
-		var random_number = Math.ceil(Math.random()*586);
-		$(this).attr('href', new_url + random_number);
+    var raw = randomDate(new Date(1989, 3, 1), new Date()),
+        output = raw.getFullYear()+'-'+(pad(raw.getMonth()+1))+'-'+pad(raw.getDate());
+		    new_url = 'http://www.dilbert.com/strips/comic/';
+		$(this).attr('href', new_url + output);
 	});
 }
